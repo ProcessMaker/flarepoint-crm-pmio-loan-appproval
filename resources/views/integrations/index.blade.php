@@ -49,7 +49,9 @@
             {!! Form::close() !!}
         </div>--}}
         <div class="col-sm-4">
-
+            @php
+             $host = (isset($check[0]->host)) ?  $check[0]->host : null;
+            @endphp
             <img src="imagesIntegration/logo-black-processmaker.svg" width="50%" align="center" alt="">
             {!! Form::open([
 
@@ -58,7 +60,7 @@
                 <div class="input-group">
                 {!! Form::label('host', __('Host'), ['class' => 'control-label']) !!}
                 <span class="input-group-addon" id="basic-addon3">https://</span>
-                {!! Form::text('host', $check[0]->host, ['class' => 'form-control']) !!}
+                {!! Form::text('host', $host, ['class' => 'form-control']) !!}
                 </div>
             </div>
 
