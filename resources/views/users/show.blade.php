@@ -16,7 +16,10 @@
                         <select name="status" id="status-task">
                         <option value="" disabled selected>{{ __('Status') }}</option>
                             <option value="open">Open</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
                             <option value="closed">Closed</option>
+                            <option value="error">Api request error</option>
                             <option value="all">All</option>
                         </select>
                     </th>
@@ -61,7 +64,7 @@
   </el-tabs>
   </div>
   <div class="col-sm-4">
-  <h4>{{ __('Tasks') }}</h4>
+  <h4>{{ __('Loans') }}</h4>
 <doughnut :statistics="{{$task_statistics}}"></doughnut>
 {{--<h4>{{ __('Leads') }}</h4>
 <doughnut :statistics="{{$lead_statistics}}"></doughnut>--}}
@@ -100,7 +103,14 @@
                         table.columns(4).search(1).draw();
                     } else if(selected == 'closed') {
                         table.columns(4).search(2).draw();
-                    } else {
+                    } else if(selected == 'approved') {
+                        table.columns(4).search(3).draw();
+                    } else if(selected == 'rejected') {
+                        table.columns(4).search(4).draw();
+                    } else if(selected == 'error') {
+                        table.columns(4).search(5).draw();
+                    }
+                    else {
                          table.columns(4).search( '' ).draw();
                     }
               });  

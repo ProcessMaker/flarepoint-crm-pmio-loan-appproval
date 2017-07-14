@@ -11,6 +11,7 @@
             <th>{{ __('Title') }}</th>
             <th>{{ __('Created at') }}</th>
             <th>{{ __('Deadline') }}</th>
+            <th>{{ __('Amount') }}</th>
             <th>{{ __('Assigned') }}</th>
 
         </tr>
@@ -30,6 +31,7 @@
                 {data: 'titlelink', name: 'title'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'deadline', name: 'deadline'},
+                {data: 'amount', name: 'amount'},
                 {data: 'user_assigned_id', name: 'user_assigned_id',},
 
             ]

@@ -57,7 +57,7 @@ class TasksController extends Controller
     public function anyData()
     {
         $tasks = Task::select(
-            ['id', 'title', 'created_at', 'deadline', 'user_assigned_id']
+            ['id', 'title', 'created_at', 'deadline', 'user_assigned_id', 'amount']
         )
             ->where('status', 1)->get();
         return Datatables::of($tasks)
