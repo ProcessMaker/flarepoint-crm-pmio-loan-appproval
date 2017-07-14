@@ -122,13 +122,21 @@ body {
     margin-left: 0;
 }
 
-.form-inline .form-control {
+.form-inline {
+
+  .form-group, &.form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+
     @media (min-width: 768px)
     {
         width:100%;
     }
-    margin-bottom: 15px;
+  }
 }
+
 .removeleft
 {
     padding-left: 0;
