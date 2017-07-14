@@ -24,23 +24,23 @@
         @include('partials.userheader')
     </div>
     <div class="row">
-        <div class="col-md-8 currenttask">
+        <div class="col-md-10 currenttask">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#task">{{__('Tasks')}}</a></li>
-                <li><a data-toggle="tab" href="#lead">{{__('Leads')}}</a></li>
+                <li class="active"><a data-toggle="tab" href="#task">{{__('Loans')}}</a></li>
+                {{--<li><a data-toggle="tab" href="#lead">{{__('Leads')}}</a></li>--}}
                 <li><a data-toggle="tab" href="#document">{{__('Documents')}}</a></li>
-                <li><a data-toggle="tab" href="#invoice">{{__('Invoices')}}</a></li>
+                {{--<li><a data-toggle="tab" href="#invoice">{{__('Invoices')}}</a></li>--}}
 
             </ul>
             <div class="tab-content">
                 @include('clients.tabs.tasktab')
             </div>
-            @include('clients.tabs.leadtab')
+            {{--@include('clients.tabs.leadtab')--}}
             @include('clients.tabs.documenttab')
-            @include('clients.tabs.invoicetab')
+            {{--@include('clients.tabs.invoicetab')--}}
         </div>
     </div>
-    <div class="col-md-4 currenttask">
+    <div class="col-md-2 currenttask">
                 {!! Form::model($client, [
                'method' => 'PATCH',
                 'url' => ['clients/updateassign', $client->id],

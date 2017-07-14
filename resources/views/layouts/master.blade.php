@@ -86,8 +86,8 @@ $('body').click(function(e) {
     <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm" role="navigation">
         <div class="list-group panel">
             <p class=" list-group-item siderbar-top" title=""><img src="{{url('images/flarepoint_logo.png')}}" alt=""></p>
-            <a href="{{route('dashboard', \Auth::id())}}" class=" list-group-item" data-parent="#MainMenu"><i
-                        class="glyphicon sidebar-icon glyphicon-dashboard"></i><span id="menu-txt">{{ __('Dashboard') }}</span> </a>
+            {{--<a href="{{route('dashboard', \Auth::id())}}" class=" list-group-item" data-parent="#MainMenu"><i
+                        class="glyphicon sidebar-icon glyphicon-dashboard"></i><span id="menu-txt">{{ __('Dashboard') }}</span> </a>--}}
             <a href="{{route('users.show', \Auth::id())}}" class=" list-group-item" data-parent="#MainMenu"><i
                         class="glyphicon sidebar-icon glyphicon-user"></i><span id="menu-txt">{{ __('Profile') }}</span> </a>
 
@@ -105,12 +105,12 @@ $('body').click(function(e) {
             </div>
 
             <a href="#tasks" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i
-                        class="glyphicon sidebar-icon glyphicon-tasks"></i><span id="menu-txt">{{ __('Tasks') }}</span>
+                        class="glyphicon sidebar-icon glyphicon-tasks"></i><span id="menu-txt">{{ __('Loans') }}</span>
             <i class="ion-chevron-up  arrow-up sidebar-arrow"></i></a>
             <div class="collapse" id="tasks">
-                <a href="{{ route('tasks.index')}}" class="list-group-item childlist">{{ __('All Tasks') }}</a>
+                <a href="{{ route('tasks.index')}}" class="list-group-item childlist">{{ __('All Loans') }}</a>
                 @if(Entrust::can('task-create'))
-                    <a href="{{ route('tasks.create')}}" class="list-group-item childlist">{{ __('New Task') }}</a>
+                    <a href="{{ route('tasks.create')}}" class="list-group-item childlist">{{ __('New Loan') }}</a>
                 @endif
             </div>
 
@@ -125,7 +125,7 @@ $('body').click(function(e) {
                 @endif
             </div>
 
-            <a href="#leads" class=" list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i
+            {{--<a href="#leads" class=" list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i
                         class="glyphicon sidebar-icon glyphicon-hourglass"></i><span id="menu-txt">{{ __('Leads') }}</span>
             <i class="ion-chevron-up  arrow-up sidebar-arrow"></i></a>
             <div class="collapse" id="leads">
@@ -134,7 +134,7 @@ $('body').click(function(e) {
                     <a href="{{ route('leads.create')}}"
                        class="list-group-item childlist">{{ __('New Lead') }}</a>
                 @endif
-            </div>
+            </div>--}}
             <a href="#departments" class=" list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i
                         class="sidebar-icon glyphicon glyphicon-list-alt"></i><span id="menu-txt">{{ __('Departments') }}</span>
             <i class="ion-chevron-up  arrow-up sidebar-arrow"></i></a>

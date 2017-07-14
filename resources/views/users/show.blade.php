@@ -23,7 +23,7 @@
             </thead>
         </table>
     </el-tab-pane>
-    <el-tab-pane label="Leads" name="leads">
+    {{--<el-tab-pane label="Leads" name="leads">
       <table class="table table-hover">
         <table class="table table-hover" id="leads-table">
                 <h3>{{ __('Leads assigned') }}</h3>
@@ -44,7 +44,7 @@
                 </tr>
                 </thead>
             </table>
-    </el-tab-pane>
+    </el-tab-pane>--}}
     <el-tab-pane label="Clients" name="clients">
          <table class="table table-hover" id="clients-table">
                 <h3>{{ __('Clients assigned') }}</h3>
@@ -62,8 +62,8 @@
   <div class="col-sm-4">
   <h4>{{ __('Tasks') }}</h4>
 <doughnut :statistics="{{$task_statistics}}"></doughnut>
-<h4>{{ __('Leads') }}</h4>
-<doughnut :statistics="{{$lead_statistics}}"></doughnut>
+{{--<h4>{{ __('Leads') }}</h4>
+<doughnut :statistics="{{$lead_statistics}}"></doughnut>--}}
   </div>
 
    @stop 

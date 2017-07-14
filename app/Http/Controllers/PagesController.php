@@ -9,6 +9,7 @@ use App\Repositories\Lead\LeadRepositoryContract;
 use App\Repositories\User\UserRepositoryContract;
 use App\Repositories\Client\ClientRepositoryContract;
 use App\Repositories\Setting\SettingRepositoryContract;
+use Illuminate\Routing\Route;
 
 class PagesController extends Controller
 {
@@ -39,6 +40,8 @@ class PagesController extends Controller
      */
     public function dashboard()
     {
+
+        return redirect()->route('tasks.index');
 
       /**
          * Other Statistics

@@ -9,8 +9,10 @@
                 <th>{{ __('Assigned') }}</th>
                 <th>{{ __('Created at') }}</th>
                 <th>{{ __('Deadline') }}</th>
+                <th>{{ __('Amount $') }}</th>
+                <th>{{ __('Status') }}</th>
                 <th><a href="{{ route('tasks.create', ['client' => $client->id])}}">
-                        <button class="btn btn-success">{{ __('New task') }}</button>
+                        <button class="btn btn-success">{{ __('New Loan') }}</button>
                     </a></th>
 
             </tr>
@@ -53,6 +55,16 @@
                     <td>{{date('d, M Y, H:i', strTotime($task->created_at))}}  </td>
                     <td>{{date('d, M Y', strTotime($task->deadline))}}
                         @if($task->status == 1)({{ $task->days_until_deadline }}) @endif</td>
+                    <td class="text-center">{{ $task->amount or '-' }}</td>
+                    <td>@if($task->status == 1)
+                            {{ __('Open') }}
+                        @elseif($task->status == 2)
+                            {{ __('Closed') }}
+                        @elseif($task->status == 3)
+                            {{ __('Approved') }}
+                        @elseif($task->status == 4)
+                            {{ __('Rejected') }}
+                        @endif</td>
                     <td></td>
                 </tr>
 

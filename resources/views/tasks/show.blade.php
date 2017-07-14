@@ -15,7 +15,7 @@
 
     <div class="row">
         @include('partials.clientheader')
-        @include('partials.userheader')
+        {{--@include('partials.userheader')--}}
     </div>
 
     <div class="row">
@@ -44,12 +44,18 @@
                             @if($tasks->status == 1)({!! $tasks->days_until_deadline !!})@endif</span></p>
                     <!--Remove days left if tasks is completed-->
                 @endif
-
+                <p>
                 @if($tasks->status == 1)
                     {{ __('Status') }}: {{ __('Open') }}
-                @else
+                @elseif($tasks->status == 2)
                     {{ __('Status') }}: {{ __('Closed') }}
+                @elseif($tasks->status == 3)
+                    {{ __('Status') }}: {{ __('Approved') }}
+                @elseif($tasks->status == 4)
+                    {{ __('Status') }}: {{ __('Rejected') }}
                 @endif
+                </p>
+                <p><span style="font-weight: bold;">{{__('Amount')}}</span>: {{number_format($tasks->amount, 2, '.', ' ')}} <span>$</span></p>
             </div>
             @if($tasks->status == 1)
 
@@ -70,7 +76,7 @@
                 {!! Form::close() !!}
 
             @endif
-            <div class="sidebarheader">
+            {{--<div class="sidebarheader">
                 <p>{{ __('Time management') }}</p>
             </div>
             <table class="table table_wrapper ">
@@ -95,7 +101,7 @@
             <button type="button" class="btn btn-primary form-control movedown" data-toggle="modal"
                     data-target="#myModal">
                 {{ __('Create invoice') }}
-            </button>
+            </button>--}}
             
             <div class="activity-feed movedown">
                 @foreach($tasks->activity as $activity)

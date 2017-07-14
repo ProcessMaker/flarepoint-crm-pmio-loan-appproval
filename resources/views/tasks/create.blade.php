@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('heading')
-    <h1>Create task</h1>
+    <h1>Create Loan Request</h1>
 @stop
 
 @section('content')
@@ -20,16 +20,24 @@
     </div>
 
     <div class="form-inline">
-        <div class="form-group col-sm-6 removeleft ">
+        <div class="form-group col-sm-4 removeleft ">
             {!! Form::label('deadline', __('Deadline'), ['class' => 'control-label']) !!}
             {!! Form::date('deadline', \Carbon\Carbon::now()->addDays(3), ['class' => 'form-control']) !!}
         </div>
 
-        <div class="form-group col-sm-6 removeleft removeright">
+        <div class="form-group col-sm-4 removeleft removeright">
             {!! Form::label('status', __('Status'), ['class' => 'control-label']) !!}
             {!! Form::select('status', array(
-            '1' => 'Open', '2' => 'Completed'), null, ['class' => 'form-control'] )
+            '1' => 'Open', '3' =>'Approved', '4' =>'Rejected', '2' => 'Completed'), null, ['class' => 'form-control'] )
          !!}
+        </div>
+        <div class="form-group col-sm-4 removeright" >
+            <div class="input-group">
+            {!! Form::label('amount', __('Amount'), ['class' => 'control-label']) !!}
+            {{--<span class="input-group-addon">$</span>--}}
+            {!! Form::text('amount', null, ['class' => 'form-control', 'placeholder' => '00.00']) !!}
+                <span class="input-group-addon">$</span>
+            </div>
         </div>
 
     </div>

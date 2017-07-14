@@ -63,6 +63,7 @@
   "Sign Out": "Sign Out",
   "Note": "Note",
   "Status": "Status",
+  "Amount": "Amount",
   "Time": "Time",
   "Assign user": "Assign user",
   "Assign Client": "Assign client",
@@ -159,5 +160,7 @@
   "Register time": "Register time",
   "Yes": "Yes",
   "No": "No",
-  "Create lead": "Creat lead"
+  "Create lead": "Creat lead",
+  "Approved": "Approved",
+  "Rejected": "Rejected"
 }
