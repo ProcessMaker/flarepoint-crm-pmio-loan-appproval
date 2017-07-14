@@ -32,8 +32,8 @@
          !!}
         </div>
         <div class="form-group col-sm-4 removeright" >
-            <div class="input-group">
             {!! Form::label('amount', __('Amount'), ['class' => 'control-label']) !!}
+            <div class="input-group">
             {{--<span class="input-group-addon">$</span>--}}
             {!! Form::text('amount', null, ['class' => 'form-control', 'placeholder' => '00.00']) !!}
                 <span class="input-group-addon">$</span>
