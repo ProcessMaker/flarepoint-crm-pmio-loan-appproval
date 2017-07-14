@@ -48,7 +48,7 @@
 
             {!! Form::close() !!}
         </div>--}}
-        <div class="col-sm-4">
+        <div class="col-sm-12">
             @php
              $host = (isset($check[0]->host)) ?  $check[0]->host : null;
             @endphp

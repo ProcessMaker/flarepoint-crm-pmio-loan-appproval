@@ -110,15 +110,18 @@ class TasksController extends Controller
     public function show(Request $request, $id)
     {
         $integrationCheck = Integration::first();
+        $apiConnected = false;
+        $invoiceContacts = [];
 
-        if ($integrationCheck) {
+        /*if ($integrationCheck) {
             $api = Integration::getApi('billing');
             $apiConnected = true;
             $invoiceContacts = $api->getContacts();
         } else {
             $apiConnected = false;
             $invoiceContacts = [];
-        }
+        }*/
+
 
         return view('tasks.show')
             ->withTasks($this->tasks->find($id))

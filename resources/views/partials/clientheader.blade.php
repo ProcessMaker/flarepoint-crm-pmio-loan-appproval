@@ -77,6 +77,7 @@
         </tr>
         </thead>
         <tbody>
+        @if (count($client->documents) > 0)
         @foreach($client->documents as $document)
             <tr>
                 <td><a href="../files/{{$companyname}}/{{$document->path}}"
@@ -93,6 +94,7 @@
                 </td>--}}
             </tr>
         @endforeach
+        @endif
         </tbody>
     </table>
 </div>
