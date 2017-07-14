@@ -76,7 +76,7 @@ class UsersController extends Controller
     public function taskData($id)
     {
         $tasks = Task::select(
-            ['id', 'title', 'created_at', 'deadline', 'user_assigned_id', 'client_id', 'status']
+            ['id', 'title', 'created_at', 'deadline', 'user_assigned_id', 'client_id', 'status', 'amount']
         )
             ->where('user_assigned_id', $id);
         return Datatables::of($tasks)

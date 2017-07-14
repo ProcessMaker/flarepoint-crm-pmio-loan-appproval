@@ -3,14 +3,15 @@
     @include('partials.userheader')
 <div class="col-sm-8">
   <el-tabs active-name="tasks" style="width:100%">
-    <el-tab-pane label="Tasks" name="tasks">
+    <el-tab-pane label="Loans" name="tasks">
         <table class="table table-hover" id="tasks-table">
-        <h3>{{ __('Tasks assigned') }}</h3>
+        <h3>{{ __('Loans assigned') }}</h3>
             <thead>
                     <th>{{ __('Title') }}</th>
                     <th>{{ __('Client') }}</th>
                     <th>{{ __('Created at') }}</th>
                     <th>{{ __('Deadline') }}</th>
+                    <th>{{ __('Amount') }}</th>
                     <th>
                         <select name="status" id="status-task">
                         <option value="" disabled selected>{{ __('Status') }}</option>
@@ -88,6 +89,7 @@
                         {data: 'client_id', name: 'Client', orderable: false, searchable: false},
                         {data: 'created_at', name: 'created_at'},
                         {data: 'deadline', name: 'deadline'},
+                        {data: 'amount', name: 'amount'},
                         {data: 'status', name: 'status', orderable: false},
                     ]
                 });
