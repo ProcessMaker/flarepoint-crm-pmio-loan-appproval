@@ -6,7 +6,7 @@ use App\Dinero;
 
 class Integration extends Model
 {
-    protected $fillable = ['name', 'client_id', 'client_secret', 'api_key', 'org_id', 'api_type'];
+    protected $fillable = ['name', 'client_id', 'client_secret', 'api_key', 'org_id', 'api_type', 'host'];
 
     /**
      * @param $type

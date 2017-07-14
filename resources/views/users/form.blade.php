@@ -53,8 +53,10 @@
         isset($user)
         ? $user->department->first()->id : null,
         ['class' => 'form-control']) !!}
-    {!! Form::label('access_token', __('Access token to processmaker.io'), ['class' => 'control-label']) !!}
+    {!! Form::label('access_token', __('Access token for access to processmaker.io'), ['class' => 'control-label']) !!}
     {!! Form::textarea('access_token',  null, ['class' => 'form-control', 'placeholder' => 'Access token']) !!}
+    {!! Form::label('refresh_token', __('Refresh token for access to processmaker.io'), ['class' => 'control-label']) !!}
+    {!! Form::textarea('refresh_token',  null, ['class' => 'form-control', 'placeholder' => 'Refresh token']) !!}
 </div>
 
 {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}
