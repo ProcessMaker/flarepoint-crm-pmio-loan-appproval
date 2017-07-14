@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-3">
             <div class="sidebarheader">
-                <p>{{ __('Task information') }}</p>
+                <p>{{ __('Loan information') }}</p>
             </div>
             <div class="sidebarbox">
                 <p>{{ __('Assigned') }}:
@@ -77,7 +77,7 @@
           'url' => ['tasks/updatestatus', $tasks->id],
           ]) !!}
 
-                {!! Form::submit(__('Close task'), ['class' => 'btn btn-success form-control closebtn']) !!}
+                {!! Form::submit(__('Close loan'), ['class' => 'btn btn-success form-control closebtn']) !!}
                 {!! Form::close() !!}
 
             @endif

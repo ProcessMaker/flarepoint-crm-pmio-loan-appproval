@@ -56,6 +56,7 @@
             {{$client->company_type}}</p>
         @endif
     </div>
+    <div class="col-md-12">
     <table class="table">
         <h4>{{ __('All Documents') }}</h4>
         {{--<div class="col-xs-10">
@@ -97,6 +98,7 @@
         @endif
         </tbody>
     </table>
+    </div>
 </div>
 
 <!--Client info rightside END-->
