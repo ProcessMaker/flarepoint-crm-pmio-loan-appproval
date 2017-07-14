@@ -56,6 +56,8 @@
                     {{ __('Status') }}: {{ __('Approved') }}
                 @elseif($tasks->status == 4)
                     {{ __('Status') }}: {{ __('Rejected') }}
+                @elseif($tasks->status == 5)
+                    {{ __('Status') }}: {{ __('Reqest internal error') }}
                 @endif
                 </p>
                 <p><span style="font-weight: bold;">{{__('Amount')}}</span>: {{number_format($tasks->amount, 2, '.', ' ')}} <span>$</span></p>
