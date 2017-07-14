@@ -33,8 +33,8 @@
         </div>
         <div class="form-group col-sm-4 removeright" >
             {!! Form::label('amount', __('Amount'), ['class' => 'control-label']) !!}
+            <div class="clearfix"></div>
             <div class="input-group">
-            {{--<span class="input-group-addon">$</span>--}}
             {!! Form::text('amount', null, ['class' => 'form-control', 'placeholder' => '00.00']) !!}
                 <span class="input-group-addon">$</span>
             </div>
@@ -44,13 +44,15 @@
     <div class="form-group form-inline">
         {!! Form::label('user_assigned_id', __('Assign user'), ['class' => 'control-label']) !!}
         {!! Form::select('user_assigned_id', $users, null, ['class' => 'form-control']) !!}
+    </div>
         @if(Request::get('client') != "")
             {!! Form::hidden('client_id', Request::get('client')) !!}
         @else
-            {!! Form::label('client_id', __('Assign client'), ['class' => 'control-label']) !!}
-            {!! Form::select('client_id', $clients, null, ['class' => 'form-control']) !!}
+            <div class="form-group form-inline">
+                {!! Form::label('client_id', __('Assign client'), ['class' => 'control-label']) !!}
+                {!! Form::select('client_id', $clients, null, ['class' => 'form-control']) !!}
+            </div>
         @endif
-    </div>
 
     {!! Form::submit(__('Create task'), ['class' => 'btn btn-primary']) !!}
 
