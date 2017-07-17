@@ -100,15 +100,15 @@
                 $('#status-task').change(function() {
                 selected = $("#status-task option:selected").val();
                     if(selected == 'open') {
-                        table.columns(4).search(1).draw();
+                        table.columns(5).search(1).draw();
                     } else if(selected == 'closed') {
-                        table.columns(4).search(2).draw();
+                        table.columns(5).search(2).draw();
                     } else if(selected == 'approved') {
-                        table.columns(4).search(3).draw();
+                        table.columns(5).search(3).draw();
                     } else if(selected == 'rejected') {
-                        table.columns(4).search(4).draw();
+                        table.columns(5).search(4).draw();
                     } else if(selected == 'error') {
-                        table.columns(4).search(5).draw();
+                        table.columns(5).search(5).draw();
                     }
                     else {
                          table.columns(4).search( '' ).draw();

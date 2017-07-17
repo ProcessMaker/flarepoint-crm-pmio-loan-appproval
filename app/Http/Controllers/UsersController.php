@@ -92,7 +92,16 @@ class UsersController extends Controller
                     ->format('d/m/Y') : '';
             })
             ->editColumn('status', function ($tasks) {
-                return $tasks->status == 1 ? '<span class="label label-success">Open</span>' : '<span class="label label-danger">Closed</span>';
+                if ($tasks->status == 1)
+                    return '<span class="label label-success">Open</span>';
+                else if ($tasks->status == 2)
+                    return '<span class="label label-danger">Closed</span>';
+                else if ($tasks->status == 3)
+                    return '<span class="label label-primary">Approved</span>';
+                else if ($tasks->status == 4)
+                    return '<span class="label label-warning">Rejected</span>';
+                else if ($tasks->status == 5)
+                    return '<span class="label label-danger">Api request error</span>';
             })
             ->editColumn('client_id', function ($tasks) {
                 return $tasks->client->name;
