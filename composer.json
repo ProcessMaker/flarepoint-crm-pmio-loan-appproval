@@ -26,7 +26,8 @@
         "zizaco/entrust": "1.7.*",
         "laravel/tinker": "^1.0",
         "laravel/dusk": "^1.0",
-        "fzaninotto/faker": "~1.4"
+        "fzaninotto/faker": "~1.4",
+        "doctrine/dbal":"~2.5"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
