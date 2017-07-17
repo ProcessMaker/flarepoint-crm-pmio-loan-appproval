@@ -78,7 +78,7 @@ class Processmaker_core
                 'query' => [
                     'amount'    => $data->getAttribute('amount'),
                     'case_id'   => $data->getAttribute('id'),
-                    'crm_host'  => route('callback')
+                    'crm_callback'  => route('callback')
                 ]
                 ]);
 
