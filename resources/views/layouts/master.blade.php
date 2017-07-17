@@ -108,7 +108,7 @@ $('body').click(function(e) {
                         class="glyphicon sidebar-icon glyphicon-tasks"></i><span id="menu-txt">{{ __('Loans') }}</span>
             <i class="ion-chevron-up  arrow-up sidebar-arrow"></i></a>
             <div class="collapse" id="tasks">
-                <a href="{{ route('tasks.index')}}" class="list-group-item childlist">{{ __('All Loans') }}</a>
+                <a href="{{ route('tasks.index')}}" class="list-group-item childlist">{{ __('Opened Loans') }}</a>
                 @if(Entrust::can('task-create'))
                     <a href="{{ route('tasks.create')}}" class="list-group-item childlist">{{ __('New Loan') }}</a>
                 @endif
