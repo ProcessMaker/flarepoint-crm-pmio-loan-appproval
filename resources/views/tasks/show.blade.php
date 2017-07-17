@@ -14,7 +14,7 @@
         });
     </script>
 
-    @if(\Auth::user()->name == 'Test')
+    {{--@if(\Auth::user()->name == 'Test')--}}
 
 
         <script>
@@ -154,7 +154,7 @@
              */
         </script>
 
-    @elseif(\Auth::user()->name == 'Bob')
+    {{--@elseif(\Auth::user()->name == 'Bob')
 
 
         <script>
@@ -241,7 +241,7 @@
             });
         </script>
 
-    @endif
+    @endif--}}
 
     @endpush
 
