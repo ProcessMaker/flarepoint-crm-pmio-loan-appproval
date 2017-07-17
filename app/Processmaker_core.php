@@ -65,7 +65,7 @@ class Processmaker_core
 
         /** @var GuzzleHttp\Client $client */
         $client = new GuzzleHttp\Client([
-            'base_uri' => 'http://'.Integration::whereApiType('Processmaker_core')->pluck('host')->first().'/api/v1/'
+            'base_uri' => 'http://'.Integration::whereApiType('processmaker_core')->pluck('host')->first().'/api/v1/'
         ]);
 
         /** Call API Start event */
