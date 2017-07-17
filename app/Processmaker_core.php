@@ -61,11 +61,11 @@ class Processmaker_core
     public static function triggerStartEvent($data)
     {
         /** string $host */
-        $host = 'http://'.Integration::whereApiType('Processmaker_core')->pluck('host')->first().'/api/v1';
+        $host = Integration::whereApiType('processmaker_core')->pluck('host')->first();
 
         /** @var GuzzleHttp\Client $client */
         $client = new GuzzleHttp\Client([
-            'base_uri' => 'http://'.Integration::whereApiType('processmaker_core')->pluck('host')->first().'/api/v1/'
+            'base_uri' => "https://$host/api/v1/"
         ]);
 
         /** Call API Start event */
