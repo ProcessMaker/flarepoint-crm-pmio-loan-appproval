@@ -3,6 +3,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon;
+use App\Processmaker_core;
+
 
 class Task extends Model
 {
@@ -78,5 +80,14 @@ class Task extends Model
     {
         $reply = $this->comments()->create($reply);
         return $reply;
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($model) {
+            Processmaker_core::triggerStartEvent($model);
+        });
+
     }
 }

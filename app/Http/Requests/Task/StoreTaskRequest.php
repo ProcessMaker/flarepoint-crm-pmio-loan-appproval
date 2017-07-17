@@ -26,7 +26,7 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|numeric',
             'status' => 'required',
             'user_assigned_id' => 'required',
             'user_created_id' => '',

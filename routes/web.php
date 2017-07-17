@@ -10,6 +10,8 @@
 |
 */
 Route::auth();
+Route::get('changeloanstatus','ChangeStatusController@changeLoanStatus')
+    ->name('callback');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => ['auth']], function () {
     

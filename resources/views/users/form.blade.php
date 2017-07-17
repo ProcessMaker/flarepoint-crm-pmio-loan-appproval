@@ -54,9 +54,9 @@
         ? $user->department->first()->id : null,
         ['class' => 'form-control']) !!}
     {!! Form::label('access_token', __('Access token for access to processmaker.io'), ['class' => 'control-label']) !!}
-    {!! Form::textarea('access_token',  null, ['class' => 'form-control', 'placeholder' => 'Access token']) !!}
+    {!! Form::textarea('access_token',  isset($user->access_token) ? $user->access_token : null, ['class' => 'form-control', 'placeholder' => 'Access token']) !!}
     {!! Form::label('refresh_token', __('Refresh token for access to processmaker.io'), ['class' => 'control-label']) !!}
-    {!! Form::textarea('refresh_token',  null, ['class' => 'form-control', 'placeholder' => 'Refresh token']) !!}
+    {!! Form::textarea('refresh_token',  isset($user->refresh_token) ? $user->refresh_token : null, ['class' => 'form-control', 'placeholder' => 'Refresh token']) !!}
 </div>
 
 {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}

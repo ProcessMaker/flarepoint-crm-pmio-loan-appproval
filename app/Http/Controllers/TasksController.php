@@ -109,7 +109,7 @@ class TasksController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $integrationCheck = Integration::first();
+        $host =
         $apiConnected = false;
         $invoiceContacts = [];
 
@@ -123,7 +123,9 @@ class TasksController extends Controller
         }*/
 
 
-        return view('tasks.show')
+        return view('tasks.show', [
+            'host' => Integration::whereApiType('Processmaker_core')->pluck('host')->first()
+        ])
             ->withTasks($this->tasks->find($id))
             ->withUsers($this->users->getAllUsersWithDepartments())
             ->withContacts($invoiceContacts)

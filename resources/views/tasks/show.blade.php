@@ -5,22 +5,276 @@
 @stop
 
 @section('content')
-@push('scripts')
+    @push('scripts')
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
-@endpush
+
+    @if(\Auth::user()->name == 'Test')
+
+
+        <script>
+            /* Interface for Test user*/
+            var taskstatus = {{$tasks->status}};
+
+            var taskInstance = '';
+
+            var client = axios.create({
+                baseURL: 'http://{{$host}}/api/v1/',
+                //timeout: 1000,
+                headers: {
+                    "content-type": "application/json",
+                    "Accept": "application/json",
+                    'Authorization' : 'Bearer {{ \Auth::user()->access_token }}'
+                },
+                onUploadProgress: function (progressEvent) {
+
+                },
+
+            });
+
+            function getManagerTask() {
+                $('div.loader').fadeToggle(300);
+                client.get('processes/Loan%20Request/datamodels/search/case_id='+{{$tasks->id}})
+                    .then(function (response) {
+                        if (response.status == 200 && response.data.data.length > 0) {
+                            var instanceId = response.data.data[0].attributes.instance_id;
+                            client.get('instances/'+instanceId+'/tasks/Manager%20decision/task_instances/delegated')
+                                .then(function (response) {
+                                    console.log(response);
+                                    taskInstance = response.data.data[0];
+                                    if (response.data.data.length > 0){
+                                        $('div.loader').fadeToggle(1);
+                                        $('div.manager-decision').fadeIn(500);
+                                    } else {
+                                        client.get('instances/'+instanceId+'/tasks/Manager%20decision/task_instances')
+                                            .then(function (response) {
+                                                if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
+                                                    $('div.loader').fadeToggle(1);
+                                                    $('div.manager-decision').html("<p>You \'ve already made decision</p>").fadeIn(300);
+                                                }
+
+                                            });
+                                    }
+                                });
+                        }
+                    }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+
+            function setManagerDecision(decision) {
+                var data = {
+                    'data': {
+                        'type':'task_instance',
+                        'attributes': {
+                            'status':'COMPLETE',
+                            'content':{'manager_status':decision}
+                        }
+                    }
+                };
+                data = JSON.stringify(data);
+                client.patch('task_instances/'+taskInstance.id, data)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            console.log(response.data.data[0]);
+                            $('div.loader').fadeToggle(1);
+                            $('div.manager-decision')
+                                .html('<p>You \'ve made decision</p>');
+
+                        } else return false;
+                    }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+
+            $(document).ready(function() {
+                console.log(taskstatus);
+                if (taskstatus == 1) {
+                    getManagerTask();
+                }
+            });
+
+            $('.manager-decision button').on('click', function () {
+                $('div.manager-decision :button')
+                    .fadeOut('300');
+                $('div.loader').fadeToggle(1);
+                setManagerDecision($(this).data('manager_status'));
+            });
+
+            /*
+             var app = new Vue({
+             el: 'body',
+             data: {
+             who: '11'
+             managerdata: false,
+             bigboss: false,
+             manager_status: '',
+             bigboss_status: ''
+             },
+             methods: {
+             managertask: function() {
+             console.log(this.who)
+             client.get('processes/Loan%20Request/datamodels/search/case_id='+)
+             .then(function (response) {
+             if (response.status == 200 && response.data.data.length > 0) {
+             //console.log(response.data.data[0]);
+             this.who = 'Manager'
+             this.managerdata = true
+             return true;
+             } else return false;
+
+             });
+             },
+             bigbosstask: function() {
+             client.get('processes/Loan%20Request/datamodels/search/case_id=')
+             .then(function (response) {
+             if (response.status == 200 && response.data.data.length > 0) {
+             console.log(response.data.data[0]);
+             }
+
+             });
+             }
+             },
+             created: function () {
+             if (this.managertask() === false) {
+             if (!this.bigbosstask() === false) {
+             //Here request about decision
+             }
+             }
+             }
+
+             });
+
+             */
+        </script>
+
+    @elseif(\Auth::user()->name == 'Bob')
+
+
+        <script>
+            /* Interface for Bob user*/
+            var taskstatus = {{$tasks->status}};
+
+            var taskInstance = '';
+
+            var client = axios.create({
+                baseURL: 'http://{{$host}}/api/v1/',
+                //timeout: 1000,
+                headers: {
+                    "content-type": "application/json",
+                    "Accept": "application/json",
+                    'Authorization' : 'Bearer {{ \Auth::user()->access_token }}'
+                }
+
+            });
+
+            function getBigBossTask() {
+                $('div.loader').fadeToggle(300);
+                client.get('processes/Loan%20Request/datamodels/search/case_id='+{{$tasks->id}})
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.status == 200 && response.data.data.length > 0) {
+                            var instanceId = response.data.data[0].attributes.instance_id;
+                            client.get('instances/'+instanceId+'/tasks/Big%20boss%20 approval/task_instances/delegated')
+                                .then(function (response) {
+                                    console.log(response);
+                                    taskInstance = response.data.data[0];
+                                    if (response.data.data.length > 0){
+                                        $('div.loader').fadeToggle(1);
+                                        $('div.bigboss-decision').fadeIn(500);
+                                    } else {
+                                        client.get('instances/'+instanceId+'/tasks/Big%20boss%20 approval/task_instances')
+                                            .then(function (response) {
+                                                if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
+                                                    $('div.loader').fadeToggle(1);
+                                                    $('div.bigboss-decision').html("<p>You \'ve already made decision</p>").fadeIn(300);
+                                                }
+
+                                            });
+                                    }
+                                });
+                        }
+                    }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+
+            function setBigBossDecision(decision) {
+                var data = {
+                    'data': {
+                        'type':'task_instance',
+                        'attributes': {
+                            'status':'COMPLETE',
+                            'content':{'manager_status':decision}
+                        }
+                    }
+                };
+                data = JSON.stringify(data);
+                client.patch('task_instances/'+taskInstance.id, data)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            console.log(response.data.data[0]);
+                            $('div.bigboss-decision :button')
+                                .fadeOut('300')
+                                .html('<p>You \'ve made decision</p>');
+                        } else return false;
+                    }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+
+            $(document).ready(function() {
+                if (taskstatus == 1) {
+                    getBigBossTask();
+                }
+            });
+
+            $('.bigboss-decision button').on('click', function () {
+                setBigBossDecision($(this).data('big_boss_status'));
+            });
+        </script>
+
+    @endif
+
+    @endpush
+
+
+{{--<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>--}}
 
     <div class="row">
         @include('partials.clientheader')
-        <div  class="col-md-6" style="border: 1px dashed #000000;"><h1>Our widget</h1></div>
 
-        {{--@include('partials.userheader')--}}
+            <div id="processmaker"  class="col-md-6 text-center" >
+            <img src="{{ asset('imagesIntegration/logo-black-processmaker.svg') }}" width="50%" align="center"/>
+            <div class="loader" style="display: none;"><img src="{{asset('images/ajax-loader.gif')}}" /></div>
+            <div class="text-center manager-decision" style="display: none;">
+                <h2 class="text-center">Manager Decision</h2>
+                <button class="btn btn-success" data-manager_status = "approved">Approve</button>
+                <button class="btn btn-danger" data-manager_status = "rejected">Reject</button>
+            </div>
+
+                <div class="text-center bigboss-decision" style="display: none;">
+                    <h2 class="text-center" >Bigboss Decision</h2>
+                    <button class="btn btn-success" data-big_boss_status = "approved">Approve</button>
+                    <button class="btn btn-danger" data-big_boss_status = "rejected">Reject</button>
+                </div>
+
+            </div>
+
 
     </div>
-
+    {{--@include('partials.userheader')--}}
     <div class="row">
         <div class="col-md-9">
             @include('partials.comments', ['subject' => $tasks])

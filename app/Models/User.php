@@ -7,6 +7,7 @@ use Cache;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Setting;
+use App\Processmaker_core;
 
 class User extends Authenticatable
 {
@@ -99,4 +100,13 @@ class User extends Authenticatable
         $setting = Setting::first();
         return $this->image_path ? 'images/' . $setting->company . '/' . $this->image_path : 'images/default_avatar.jpg';
     }
+
+    /*protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($model) {
+            Processmaker_core::getCredentials($model);
+        });
+
+    }*/
 }
