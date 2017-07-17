@@ -24,7 +24,7 @@
             var taskInstance = '';
 
             var client = axios.create({
-                baseURL: 'http://{{$host}}/api/v1/',
+                baseURL: 'https://{{$host}}/api/v1/',
                 //timeout: 1000,
                 headers: {
                     "content-type": "application/json",
@@ -164,7 +164,7 @@
             var taskInstance = '';
 
             var client = axios.create({
-                baseURL: 'http://{{$host}}/api/v1/',
+                baseURL: 'https://{{$host}}/api/v1/',
                 //timeout: 1000,
                 headers: {
                     "content-type": "application/json",
