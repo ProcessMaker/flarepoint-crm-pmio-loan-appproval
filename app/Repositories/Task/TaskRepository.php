@@ -274,6 +274,21 @@ class TaskRepository implements TaskRepositoryContract
         $closed_tasks = Task::where('status', 2)
         ->where('user_assigned_id', $id)->count();
 
-        return collect([$closed_tasks, $open_tasks]);
+        $approved_tasks = Task::where('status', 3)
+            ->where('user_assigned_id', $id)->count();
+
+        $rejected_tasks = Task::where('status', 4)
+            ->where('user_assigned_id', $id)->count();
+
+        $api_error_tasks = Task::where('status', 5)
+            ->where('user_assigned_id', $id)->count();
+
+        return collect([
+            $closed_tasks,
+            $open_tasks,
+            $approved_tasks,
+            $rejected_tasks,
+            $api_error_tasks
+        ]);
     }
 }

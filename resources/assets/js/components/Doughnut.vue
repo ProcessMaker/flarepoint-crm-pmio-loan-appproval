@@ -13,10 +13,10 @@ import Chart from 'chart.js';
                 this.Chart = new Chart(this.$refs.canvaschart.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                    labels: ["Closed", "Open"],
+                    labels: ["Closed", "Open","Approved", "Rejected", "Api request error"],
                     datasets: [
                         {
-                            backgroundColor: ["#FF6384", "#61BA95"],
+                            backgroundColor: ["#FF6384", "#61BA95","#337ab7","#f0ad4e","#d9534f"],
                             data: this.statistics
                         }
                    
