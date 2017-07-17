@@ -55,7 +55,7 @@
                                             .then(function (response) {
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(1);
-                                                    $('div.manager-decision').html("<p>You \'ve already made decision</p>").fadeIn(300);
+                                                    $('div.manager-decision').html("<p>You \'ve already made the decision</p>").fadeIn(300);
                                                 }
 
                                             });
