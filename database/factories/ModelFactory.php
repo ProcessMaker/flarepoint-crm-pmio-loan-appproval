@@ -35,6 +35,7 @@ $factory->define(App\Models\Client::class, function (Faker\Generator $faker) {
         'primary_number' => $faker->randomNumber(8),
         'secondary_number' => $faker->randomNumber(8),
         'industry_id' => $faker->numberBetween($min = 1, $max = 25),
+        'industry' => $faker->company(),
         'user_id' => $faker->numberBetween($min = 1, $max = 3),
         'company_type' => 'ApS',
     ];
