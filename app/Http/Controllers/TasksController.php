@@ -124,7 +124,7 @@ class TasksController extends Controller
 
 
         return view('tasks.show', [
-            'host' => Integration::whereApiType('Processmaker_core')->pluck('host')->first()
+            'host' => Integration::whereApiType('processmaker_core')->pluck('host')->first()
         ])
             ->withTasks($this->tasks->find($id))
             ->withUsers($this->users->getAllUsersWithDepartments())
