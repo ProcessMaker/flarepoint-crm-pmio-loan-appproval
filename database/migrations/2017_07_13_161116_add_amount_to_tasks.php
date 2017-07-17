@@ -14,7 +14,7 @@ class AddAmountToTasks extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-           $table->float('amount',8,2)->nullable();
+           $table->float('amount',20,2)->nullable();
         });
     }
 
