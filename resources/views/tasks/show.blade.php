@@ -14,7 +14,9 @@
         });
     </script>
 
-    @if(\Auth::user()->name == 'Test' or \Auth::user()->name == 'Admin')
+    {{--Checking if user has a key--}}
+
+    @if(!empty(\Auth::user()->access_token))
 
 
         <script>
@@ -30,10 +32,7 @@
                     "content-type": "application/json",
                     "Accept": "application/json",
                     'Authorization' : 'Bearer {{ \Auth::user()->access_token }}'
-                },
-                onUploadProgress: function (progressEvent) {
-
-                },
+                }
 
             });
 
@@ -56,8 +55,11 @@
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(1);
                                                     $('div.manager-decision').html("<p>You \'ve already made the decision</p>").fadeIn(300);
-                                                }
+                                                } else {
+                                                    /*Big boss requests */
+                                                    getBigBossTask();
 
+                                                }
                                             });
                                     }
                                 });
@@ -107,29 +109,7 @@
                 setManagerDecision($(this).data('manager_status'));
             });
 
-        </script>
-
-  @elseif(\Auth::user()->name == 'Bob')
-
-
-        <script>
-            /* Interface for Bob user*/
-            var taskstatus = {{$tasks->status}};
-
-            var taskInstance = '';
-
-            var client = axios.create({
-                baseURL: 'https://{{$host}}/api/v1/',
-                headers: {
-                    "content-type": "application/json",
-                    "Accept": "application/json",
-                    'Authorization' : 'Bearer {{ \Auth::user()->access_token }}'
-                }
-
-            });
-
             function getBigBossTask() {
-                $('div.loader').fadeToggle(300);
                 client.get('processes/Loan%20Request/datamodels/search/case_id='+{{$tasks->id}})
                     .then(function (response) {
                         console.log(response);
@@ -146,7 +126,7 @@
                                         client.get('instances/'+instanceId+'/tasks/Big%20boss%20approval/task_instances')
                                             .then(function (response) {
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
-                                                    $('div.loader').fadeToggle(1);
+                                                    $('div.loader').fadeToggle(10);
                                                     $('div.bigboss-decision').html("<p>You \'ve already made decision</p>").fadeIn(300);
                                                 }
 
@@ -187,17 +167,11 @@
                 });
             }
 
-            $(document).ready(function() {
-                if (taskstatus == 1) {
-                    getBigBossTask();
-                }
-            });
-
             $('.bigboss-decision button').on('click', function () {
                 setBigBossDecision($(this).data('big_boss_status'));
             });
-        </script>
 
+        </script>
     @endif
 
     @endpush
