@@ -14,7 +14,7 @@
         });
     </script>
 
-    {{--@if(\Auth::user()->name == 'Test')--}}
+    @if(\Auth::user()->name == 'Test' or \Auth::user()->name == 'Admin')
 
 
         <script>
@@ -107,54 +107,9 @@
                 setManagerDecision($(this).data('manager_status'));
             });
 
-            /*
-             var app = new Vue({
-             el: 'body',
-             data: {
-             who: '11'
-             managerdata: false,
-             bigboss: false,
-             manager_status: '',
-             bigboss_status: ''
-             },
-             methods: {
-             managertask: function() {
-             console.log(this.who)
-             client.get('processes/Loan%20Request/datamodels/search/case_id='+)
-             .then(function (response) {
-             if (response.status == 200 && response.data.data.length > 0) {
-             //console.log(response.data.data[0]);
-             this.who = 'Manager'
-             this.managerdata = true
-             return true;
-             } else return false;
-
-             });
-             },
-             bigbosstask: function() {
-             client.get('processes/Loan%20Request/datamodels/search/case_id=')
-             .then(function (response) {
-             if (response.status == 200 && response.data.data.length > 0) {
-             console.log(response.data.data[0]);
-             }
-
-             });
-             }
-             },
-             created: function () {
-             if (this.managertask() === false) {
-             if (!this.bigbosstask() === false) {
-             //Here request about decision
-             }
-             }
-             }
-
-             });
-
-             */
         </script>
 
-    {{--@elseif(\Auth::user()->name == 'Bob')
+  @elseif(\Auth::user()->name == 'Bob')
 
 
         <script>
@@ -165,7 +120,6 @@
 
             var client = axios.create({
                 baseURL: 'https://{{$host}}/api/v1/',
-                //timeout: 1000,
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json",
@@ -181,7 +135,7 @@
                         console.log(response);
                         if (response.status == 200 && response.data.data.length > 0) {
                             var instanceId = response.data.data[0].attributes.instance_id;
-                            client.get('instances/'+instanceId+'/tasks/Big%20boss%20 approval/task_instances/delegated')
+                            client.get('instances/'+instanceId+'/tasks/Big%20boss%20approval/task_instances/delegated')
                                 .then(function (response) {
                                     console.log(response);
                                     taskInstance = response.data.data[0];
@@ -189,7 +143,7 @@
                                         $('div.loader').fadeToggle(1);
                                         $('div.bigboss-decision').fadeIn(500);
                                     } else {
-                                        client.get('instances/'+instanceId+'/tasks/Big%20boss%20 approval/task_instances')
+                                        client.get('instances/'+instanceId+'/tasks/Big%20boss%20approval/task_instances')
                                             .then(function (response) {
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(1);
@@ -211,10 +165,13 @@
                         'type':'task_instance',
                         'attributes': {
                             'status':'COMPLETE',
-                            'content':{'manager_status':decision}
+                            'content':{'big_boss_status':decision}
                         }
                     }
                 };
+
+
+
                 data = JSON.stringify(data);
                 client.patch('task_instances/'+taskInstance.id, data)
                     .then(function (response) {
@@ -241,7 +198,7 @@
             });
         </script>
 
-    @endif--}}
+    @endif
 
     @endpush
 
