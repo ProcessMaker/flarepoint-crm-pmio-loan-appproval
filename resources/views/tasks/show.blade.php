@@ -25,6 +25,12 @@
 
             var taskInstance = '';
 
+            var processName = 'Loan%20Request';
+
+            var managerTask = 'Manager%20decision';
+
+            var bigBossTask = 'Big%20boss%20approval';
+
             var client = axios.create({
                 baseURL: 'https://{{$host}}/api/v1/',
                 //timeout: 1000,
@@ -38,11 +44,11 @@
 
             function getManagerTask() {
                 $('div.loader').fadeToggle(300);
-                client.get('processes/Loan%20Request/datamodels/search/case_id='+{{$tasks->id}})
+                client.get('processes/'+processName+'/datamodels/search/case_id='+{{$tasks->id}})
                     .then(function (response) {
                         if (response.status == 200 && response.data.data.length > 0) {
                             var instanceId = response.data.data[0].attributes.instance_id;
-                            client.get('instances/'+instanceId+'/tasks/Manager%20decision/task_instances/delegated')
+                            client.get('instances/'+instanceId+'/tasks/'+managerTask+'/task_instances/delegated')
                                 .then(function (response) {
                                     console.log(response);
                                     taskInstance = response.data.data[0];
@@ -50,7 +56,7 @@
                                         $('div.loader').fadeToggle(1);
                                         $('div.manager-decision').fadeIn(500);
                                     } else {
-                                        client.get('instances/'+instanceId+'/tasks/Manager%20decision/task_instances')
+                                        client.get('instances/'+instanceId+'/tasks/'+managerTask+'/task_instances')
                                             .then(function (response) {
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(1);
@@ -110,12 +116,12 @@
             });
 
             function getBigBossTask() {
-                client.get('processes/Loan%20Request/datamodels/search/case_id='+{{$tasks->id}})
+                client.get('processes/'+processName+'/datamodels/search/case_id='+{{$tasks->id}})
                     .then(function (response) {
                         console.log(response);
                         if (response.status == 200 && response.data.data.length > 0) {
                             var instanceId = response.data.data[0].attributes.instance_id;
-                            client.get('instances/'+instanceId+'/tasks/Big%20boss%20approval/task_instances/delegated')
+                            client.get('instances/'+instanceId+'/tasks/'+bigBossTask+'/task_instances/delegated')
                                 .then(function (response) {
                                     console.log(response);
                                     taskInstance = response.data.data[0];
