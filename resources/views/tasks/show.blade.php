@@ -27,7 +27,7 @@
 
             var processName = 'Loan%20Request';
 
-            var managerTask = 'Manager%20decision';
+            var managerTask = 'Manager%20approval';
 
             var bigBossTask = 'Big%20boss%20approval';
 
@@ -40,6 +40,12 @@
                     'Authorization' : 'Bearer {{ \Auth::user()->access_token }}'
                 }
 
+            });
+
+            $(document).ready(function() {
+                if (taskstatus == 1) {
+                    getManagerTask();
+                }
             });
 
             function getManagerTask() {
@@ -101,12 +107,7 @@
                 });
             }
 
-            $(document).ready(function() {
-                console.log(taskstatus);
-                if (taskstatus == 1) {
-                    getManagerTask();
-                }
-            });
+
 
             $('.manager-decision button').on('click', function () {
                 $('div.manager-decision :button')
@@ -129,7 +130,7 @@
                                         $('div.loader').fadeToggle(1);
                                         $('div.bigboss-decision').fadeIn(500);
                                     } else {
-                                        client.get('instances/'+instanceId+'/tasks/Big%20boss%20approval/task_instances')
+                                        client.get('instances/'+instanceId+'/tasks/'+bigBossTask+'/task_instances')
                                             .then(function (response) {
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(10);
@@ -178,6 +179,8 @@
 
             $('.bigboss-decision button').on('click', function () {
                 setBigBossDecision($(this).data('big_boss_status'));
+                $('.bigboss-decision').fadeOut('300');
+                $('div.loader').fadeToggle(1);
             });
 
         </script>
@@ -186,11 +189,6 @@
     @endpush
 
 
-{{--<style>
-    [v-cloak] {
-        display: none;
-    }
-</style>--}}
 
     <div class="row">
         @include('partials.clientheader')
