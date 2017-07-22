@@ -134,6 +134,9 @@
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(10);
                                                     $('div.bigboss-decision').html("<p>You \'ve already made decision</p>").fadeIn(300);
+                                                } else {
+                                                    $('div.loader').fadeToggle(10);
+                                                    $('div.bigboss-decision').html("<p>Waiting for manager decision.</p>").fadeIn(300);
                                                 }
 
                                             });
