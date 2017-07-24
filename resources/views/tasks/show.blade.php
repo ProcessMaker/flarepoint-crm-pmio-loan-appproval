@@ -75,6 +75,9 @@
                                             });
                                     }
                                 });
+                        } else {
+                            $('div.loader').fadeToggle(1);
+                            $('div.manager-decision').html("<p>Case not found</p>").fadeIn(300);
                         }
                     }).catch(function (error) {
                     console.log(error);
