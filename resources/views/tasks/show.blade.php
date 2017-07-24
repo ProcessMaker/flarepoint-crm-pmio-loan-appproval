@@ -113,8 +113,7 @@
 
 
             $('.manager-decision button').on('click', function () {
-                $('div.manager-decision :button')
-                    .fadeOut('300');
+                $('div.manager-decision').html('');
                 $('div.loader').fadeToggle(1);
                 setManagerDecision($(this).data('manager_status'));
             });
@@ -170,10 +169,10 @@
                     .then(function (response) {
                         console.log(response);
                         if (response.status == 200) {
+                            $('div.loader').fadeToggle(1);
                             console.log(response.data.data[0]);
-                            $('div.bigboss-decision :button')
-                                .fadeOut('300')
-                                .html('<p>You \'ve made decision</p>');
+                            $('div.bigboss-decision')
+                                .html('<p>You \'ve made decision</p>').fadeIn(200);
                         } else return false;
                     }).catch(function (error) {
                     console.log(error);
