@@ -66,7 +66,7 @@
                                             .then(function (response) {
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(1);
-                                                    $('div.manager-decision').html("<p>You \'ve already made the decision</p>").fadeIn(300);
+                                                    $('div.manager-decision').html("<div class='alert alert-info'>You \'ve already made the decision</div>").fadeIn(300);
                                                 } else {
                                                     /*Big boss requests */
                                                     getBigBossTask();
@@ -77,7 +77,7 @@
                                 });
                         } else {
                             $('div.loader').fadeToggle(1);
-                            $('div.manager-decision').html("<p>Case not found</p>").fadeIn(300);
+                            $('div.manager-decision').html("<div class='alert alert-danger'>Case not found</div>").fadeIn(300);
                         }
                     }).catch(function (error) {
                     console.log(error);
@@ -102,7 +102,7 @@
                             console.log(response.data.data[0]);
                             $('div.loader').fadeToggle(1);
                             $('div.manager-decision')
-                                .html('<p>You \'ve made decision</p>');
+                                .html("<div class='alert alert-success'>You \'ve made decision</div>");
 
                         } else return false;
                     }).catch(function (error) {
@@ -136,10 +136,10 @@
                                             .then(function (response) {
                                                 if (response.data.data.length > 0 && response.data.data[0].attributes.status == 'COMPLETE'){
                                                     $('div.loader').fadeToggle(10);
-                                                    $('div.bigboss-decision').html("<p>You \'ve already made decision</p>").fadeIn(300);
+                                                    $('div.bigboss-decision').html("<div class='alert alert-info'>You \'ve already made decision</div>").fadeIn(300);
                                                 } else {
                                                     $('div.loader').fadeToggle(10);
-                                                    $('div.bigboss-decision').html("<p>Waiting for manager decision.</p>").fadeIn(300);
+                                                    $('div.bigboss-decision').html("<div class='alert alert-info'>Waiting for manager decision.</div>").fadeIn(300);
                                                 }
 
                                             });
@@ -172,7 +172,7 @@
                             $('div.loader').fadeToggle(1);
                             console.log(response.data.data[0]);
                             $('div.bigboss-decision')
-                                .html('<p>You \'ve made decision</p>').fadeIn(200);
+                                .html("<div class='alert alert-success'>You \'ve made decision</div>").fadeIn(200);
                         } else return false;
                     }).catch(function (error) {
                     console.log(error);
@@ -205,7 +205,7 @@
             </div>
 
                 <div class="text-center bigboss-decision" style="display: none;">
-                    <h2 class="text-center" >Bigboss Decision</h2>
+                    <h2 class="text-center" >Big Boss Decision</h2>
                     <button class="btn btn-success" data-big_boss_status = "approved">Approve</button>
                     <button class="btn btn-danger" data-big_boss_status = "rejected">Reject</button>
                 </div>
