@@ -65,7 +65,7 @@ class Processmaker_core
 
         /** @var GuzzleHttp\Client $client */
         $client = new GuzzleHttp\Client([
-            'base_uri' => "https://$host/api/v1/"
+            'base_uri' => "https://$host"
         ]);
 
         /** Call API Start event */
@@ -110,7 +110,7 @@ class Processmaker_core
     public static function getCredentials($data)
     {
         /** string $host */
-        $host = 'https://'.Integration::whereApiType('Processmaker_core')->pluck('host')->first().'/api/v1';
+        $host = 'https://'.Integration::whereApiType('Processmaker_core')->pluck('host')->first();
 
         /** @var GuzzleHttp\Client $client */
         $client = new GuzzleHttp\Client([

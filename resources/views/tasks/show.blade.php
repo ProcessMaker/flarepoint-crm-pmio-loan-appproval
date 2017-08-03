@@ -32,7 +32,7 @@
             var bigBossTask = 'Big%20boss%20approval';
 
             var client = axios.create({
-                baseURL: 'https://{{$host}}/api/v1/',
+                baseURL: 'https://{{$host}}',
                 //timeout: 1000,
                 headers: {
                     "content-type": "application/json",
