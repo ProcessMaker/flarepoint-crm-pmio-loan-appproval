@@ -54,7 +54,7 @@
             </div>
         @endif
 
-    {!! Form::submit(__('Create task'), ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit(__('Create loan'), ['class' => 'btn btn-primary']) !!}
 
     {!! Form::close() !!}
 
