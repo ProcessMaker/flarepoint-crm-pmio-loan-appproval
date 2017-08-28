@@ -14,7 +14,7 @@
     "chart.js": "^2.6.0",
     "element-ui": "^1.0.7",
     "jquery": "^3.1.0",
-    "laravel-elixir": "^6.0.0-14",
+    "laravel-elixir": "^6.0.0-15",
     "laravel-elixir-vue-2": "^0.2.0",
     "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2",

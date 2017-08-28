@@ -1,4 +1,3 @@
-/public
 /vendor
 .idea/*
 /node_modules
@@ -8,4 +7,8 @@ Homestead.json
 bower_components
 
 .docker/flarepoint-db/*
-/public/
+/public/css/app.css
+/public/build
+/public/js/app.js
+/public/fonts/bootstrap
+
