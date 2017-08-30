@@ -25,7 +25,7 @@
             'route' => ['roles.destroy', $role->id]
         ]); !!}
                         @if($role->id !== 1)
-                            {!! Form::submit(Lang::get('role.headers.delete'), ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Are you sure?")']); !!}
+                            {!! Form::submit(__('Delete Role'), ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Are you sure?")']); !!}
                         @endif
                         {!! Form::close(); !!}</td>
                     </td>
@@ -36,7 +36,7 @@
         </table>
 
         <a href="{{ route('roles.create')}}">
-            <button class="btn btn-success">{{ __('Add new Role') }}e</button>
+            <button class="btn btn-success">{{ __('Add new Role') }}</button>
         </a>
 
     </div>
