@@ -70,7 +70,7 @@ class Processmaker_core
 
         /** Call API Start event */
         try {
-            $response = $client->request('GET','/processes/Loan%20Request/events/Loan%20Requested/webhook', [
+            $response = $client->request('GET','processes/Loan%20Request/events/Loan%20Requested/webhook', [
                 'headers' => [
                     'Authorization' => "Bearer ".Auth()->user()->access_token,
                     'Accept'    => 'application/json'
